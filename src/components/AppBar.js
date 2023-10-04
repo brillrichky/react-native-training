@@ -3,9 +3,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useState} from 'react';
 import {ScrollView, Text, View, Button} from 'react-native';
 import {Pressable} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const AppBar = props => {
   const [showDrawer, setShowDrawer] = useState(false);
+  const navigation = useNavigation();
 
   return (
     <>
@@ -35,7 +37,7 @@ const AppBar = props => {
           <View className="self-center">
             <Pressable
               onPress={e => {
-                setShowDrawer(!showDrawer);
+                navigation.goBack();
               }}>
               <View>
                 <Icon name="logout" size={25.0} color={'white'} />

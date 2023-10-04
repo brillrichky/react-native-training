@@ -6,58 +6,39 @@ import {
   Button,
   StyleSheet,
   ActivityIndicator,
+  TextInput,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {WingBlank, Card} from '@ant-design/react-native';
 import style from './styles/style';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef, useMemo} from 'react';
 import AppBar from './components/AppBar';
 import axios from 'axios';
 import ListCard from './components/ListCard';
 import Livin from './pages/Livin';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Login from './pages/Login';
+import Home from './pages/Home';
 
 const App = () => {
-  const [userData, setUserData] = useState(null);
-  const getAllUsers = async () => {
-    const res = await axios.get('https://reqres.in/api/users');
-    setTimeout(() => {
-      setUserData(res.data.data);
-    }, 3000);
-  };
+  // ref
 
-  useEffect(()=>{
-    getAllUsers();
-  },[])
+  // variables
+  
+
+  const Stack = createNativeStackNavigator();
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
-          <Livin/>
-          {/* <AppBar getAllUsers={getAllUsers} />
-          <WingBlank size="lg">
-            {userData ? (
-              <ListCard userData={userData}/>
-            ) : (
-              <View style={[styles.container, styles.horizontal]}>
-                <ActivityIndicator size="large" />
-              </View>
-            )}
-          </WingBlank> */}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  horizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10,
-  },
-});
 
 export default App;

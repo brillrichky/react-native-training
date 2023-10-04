@@ -10,20 +10,23 @@ import {
   View,
 } from 'react-native';
 import {StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import RegisterBottomSheet from '../components/RegisterBottomSheet';
 
 const Livin = () => {
+  const navigation = useNavigation();
   return (
-    <View>
-      <View className="flex flex-1 justify-center pt-14">
+    <View className="h-full bg-slate-200">
+      <View className="justify-center pt-40">
         <Image
-          source={require('../assets/livin.jpg')}
-          className="justify-end w-full h-96"
+          source={require('../assets/logo-livin.png')}
+          className="justify-end w-full h-56 mix-blend-multiply object-contain"
         />
       </View>
-      <View className="py-7">
+      <View className="pt-16 pb-7">
         <WingBlank size="lg">
           <TouchableHighlight
-            onPress={() => {}}
+            onPress={() => navigation.navigate('Home')}
             className="bg-blue-600 mx-auto px-28 py-4 rounded-full border-2 border-gray-500"
             style={{elevation: 10}}>
             <View className="flex flex-row gap-3">
@@ -33,7 +36,7 @@ const Livin = () => {
           </TouchableHighlight>
         </WingBlank>
       </View>
-      <View className="py-1 px-7">
+      <View className="py-1 px-9">
         <WingBlank size="lg">
           <View className="flex flex-row space-x-5">
             <View>
@@ -75,7 +78,8 @@ const Livin = () => {
             <View>
               <TouchableHighlight
                 onPress={() => {}}
-                className="bg-cyan-500 mx-auto py-3 px-3 rounded-full" style={{elevation: 5}}>
+                className="bg-cyan-500 mx-auto py-3 px-3 rounded-full"
+                style={{elevation: 5}}>
                 <View className="flex flex-row">
                   <Icon name="qr-code" size={30} color={'white'} />
                 </View>
@@ -85,15 +89,7 @@ const Livin = () => {
           </View>
         </WingBlank>
       </View>
-      {/* <BottomSheet
-        // ref={bottomSheetRef}
-        index={1}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}>
-        <View style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
-        </View>
-      </BottomSheet> */}
+      <RegisterBottomSheet />
     </View>
   );
 };
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: 'grey',
+    backgroundColor: 'blue',
   },
   contentContainer: {
     flex: 1,
