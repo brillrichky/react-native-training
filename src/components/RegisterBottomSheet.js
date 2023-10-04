@@ -20,21 +20,20 @@ const RegisterBottomSheet = props => {
   const nameRef = useRef(null);
   const passRef = useRef(null);
   const [savedData, setSavedData] = useState([]);
+
+  const handleOnPress = () => {
+    setSavedData({email: nameRef.current, pass: passRef.current});
+  };
+
   return (
     <BottomSheet
       ref={bottomSheetRef}
       index={1}
       snapPoints={snapPoints}
-      keyboardBehavior="extend"
-      backgroundStyle={{
-        backgroundColor:"white"
-      }}
-      containerStyle={{
-        opacity:1,
-      }}>
+      keyboardBehavior="extend">
       <View
         style={styles.contentContainer}
-        className="flex justify-center text-center py-2">
+        className="flex justify-center text-center py-2 shadow-xl">
         <Text className="font-bold text-xl text-center text-blue-800">
           Form Simple React Native
         </Text>

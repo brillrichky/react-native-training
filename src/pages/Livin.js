@@ -7,11 +7,12 @@ import {
   Touchable,
   TouchableHighlight,
   TouchableOpacity,
-  View,
+  View, Linking,
 } from 'react-native';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import RegisterBottomSheet from '../components/RegisterBottomSheet';
+import MenuIcon from '../components/MenuIcon';
 
 const Livin = () => {
   const navigation = useNavigation();
@@ -40,51 +41,38 @@ const Livin = () => {
         <WingBlank size="lg">
           <View className="flex flex-row space-x-5">
             <View>
-              <TouchableHighlight
-                onPress={() => {}}
-                className="bg-purple-500 mx-auto py-3 px-3 rounded-full"
-                style={{elevation: 5}}>
-                <View className="flex flex-row">
-                  <Icon name="receipt-outline" size={30} color={'white'} />
-                </View>
-              </TouchableHighlight>
-              <Text className="pt-3">Setor Tarik</Text>
+              <MenuIcon
+                text="Setor Tarik"
+                icon="receipt-outline"
+                menuStyle="bg-purple-500 mx-auto py-3 px-3 rounded-full"
+              />
             </View>
-
             <View>
-              <TouchableHighlight
-                onPress={() => {}}
-                className="bg-orange-500 mx-auto py-3 px-3 rounded-full"
-                style={{elevation: 5}}>
-                <View className="flex flex-row">
-                  <Icon name="wallet-sharp" size={30} color={'white'} />
-                </View>
-              </TouchableHighlight>
-              <Text className="pt-3">e-money</Text>
+              <MenuIcon
+                text="e-money"
+                icon="wallet-sharp"
+                menuStyle="bg-orange-500 mx-auto py-3 px-3 rounded-full"
+              />
             </View>
-
             <View>
-              <TouchableHighlight
-                onPress={() => {}}
-                className="bg-yellow-500 mx-auto py-3 px-3 rounded-full"
-                style={{elevation: 5}}>
-                <View className="flex flex-row">
-                  <Icon name="flash-outline" size={30} color={'white'} />
-                </View>
-              </TouchableHighlight>
-              <Text className="pt-3">Quick Pick</Text>
+              <MenuIcon
+                text="Quick Pick"
+                icon="flash-outline"
+                menuStyle="bg-yellow-500 mx-auto py-3 px-3 rounded-full"
+                onPress={useCallback(async () => {
+                  await Linking.openURL("geo:37.484847,-122.148386");
+                })}
+              />
             </View>
-
             <View>
-              <TouchableHighlight
-                onPress={() => {}}
-                className="bg-cyan-500 mx-auto py-3 px-3 rounded-full"
-                style={{elevation: 5}}>
-                <View className="flex flex-row">
-                  <Icon name="qr-code" size={30} color={'white'} />
-                </View>
-              </TouchableHighlight>
-              <Text className="pt-3">QR Bayar</Text>
+              <MenuIcon
+                text="QR Bayar"
+                icon="qr-code"
+                menuStyle="bg-cyan-500 mx-auto py-3 px-3 rounded-full"
+                onPress={useCallback(async () => {
+                  await Linking.openURL("https://qris.online/homepage/");
+                })}
+              />
             </View>
           </View>
         </WingBlank>
